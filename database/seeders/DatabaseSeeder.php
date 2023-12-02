@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // \App\Models\User::factory(10)->create();
-        //admin
+        //admin.blade.php
         \App\Models\User::factory()->create([
             'name' => 'Admin',
-            'email' => 'admin@brocali.com',
+            'email' => 'admin.blade.php@brocali.com',
             'password' =>Hash::make('password')
 
         ]);

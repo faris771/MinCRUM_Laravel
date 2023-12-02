@@ -14,13 +14,18 @@
     <div class="navdiv">
         <div class="navbar-brand">
             <a class="navbar-item" href="#">
-                MinCRM
+                MinCRUM
             </a>
         </div>
         @yield('nav-items')
     </div>
 
 </nav>
+
+<div class="data-info">
+    @yield('data-info')
+
+</div>
 
 <div class="container">
 

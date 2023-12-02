@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\CompanyController::class, 'index'])->name('company');
+Route::get('/', [App\Http\Controllers\CompanyController::class, 'index'])->name('companies');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,8 +30,18 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin')->middleware(['auth', 'admin']);
-Route::get('/employee', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employee')->middleware(['auth', 'employee']);
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+Route::delete('/admin', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy');
+Route::post('/admin', [App\Http\Controllers\AdminController::class, 'edit'])->name('admin.edit');
+
+Route::get('/employee', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employee.index');
+
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout');
+
+
+
+
 
 
 

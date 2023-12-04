@@ -11,20 +11,19 @@
 
 {{--back button--}}
 <a href="{{route('admin.index')}}">Back</a>
-<form method="post" action="{{route('addCompany.store')}}">
+
+<form method="post" action="{{route('companyEdit.update',$company->id)}}">
     @csrf
-    @method('POST')
-
     <label for="name">Name</label>
-    <input type="text" name="name" id="name" value="{{old('name')}}">
+    <input type="text" name="name" id="name" value="{{$company->name}}">
     <label for="email">Email</label>
-    <input type="text" name="email" id="email" value="{{old('email')}}">
+    <input type="text" name="email" id="email" value="{{$company->email}}">
     <label for="websiteLink">Website</label>
-    <input type="text" name="websiteLink" id="websiteLink" value="{{old('websiteLink')}}">
+    <input type="text" name="websiteLink" id="websiteLink" value="{{$company->websiteLink}}">
     <label for="logo">Logo</label>
-    <input type="file" name="logo" id="logo" value="{{old('logo')}}">
+    <input type="file" name="logo" id="logo" value="{{$company->logo}}">
 
-    <button type="submit">Add</button>
+    <button type="submit">update</button>
 
 
 </form>

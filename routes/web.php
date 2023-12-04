@@ -25,19 +25,36 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+    Route::delete('/admin', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::delete('/admin/{company}', [App\Http\Controllers\CompanyController::class, 'destroy'])->name('company.destroy');
+
+    Route::get('/admin/edit/{company}', [App\Http\Controllers\EditCompanyController::class, 'index'])->name('companyEdit.index');
+    Route::get('/admin/add',[App\Http\Controllers\AddCompanyController::class, 'index'])->name('addCompany.index');
+    Route::post('/admin/add',[App\Http\Controllers\AddCompanyController::class, 'store'])->name('addCompany.store');
+    Route::post('/admin/edit/{company}', [App\Http\Controllers\EditCompanyController::class, 'update'])->name('companyEdit.update');
+
+
+
+    Route::get('/employee', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employee.index');
+    Route::get('/employee/add', [App\Http\Controllers\AddEmployeeController::class, 'index'])->name('addEmployee.index');
+    Route::post('/employee/add', [App\Http\Controllers\AddEmployeeController::class, 'store'])->name('addEmployee.store');
+
+    Route::delete('/employee/{employee}/', [App\Http\Controllers\EmployeeController::class, 'destroy'])->name('employee.destroy');
+    Route::get('/employee/edit/{employee}', [App\Http\Controllers\EditEmployeeController::class, 'index'])->name('employeeEdit.index');
+//    Route:get('/employee/{add}',[App\Http\Controllers\AddEmployeeController::class, 'index'])->name('addEmployee.index');
+
+
+//http://127.0.0.1:8000/employee/4/70
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->name('logout');
+
+
 });
 
 require __DIR__.'/auth.php';
-
-
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
-Route::delete('/admin', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy');
-Route::post('/admin', [App\Http\Controllers\AdminController::class, 'edit'])->name('admin.edit');
-
-Route::get('/employee', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employee.index');
-
-Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->name('logout');
 
 
 

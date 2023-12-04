@@ -9,10 +9,7 @@
             <li>
                 <button><a href="/">Sign out</a></button>
 
-                <form method="post" action={{route('admin.store')}}>
-                    @csrf
-                    <button>Add</button>
-                </form>
+                <button><a href="{{ route('addCompany.index')}}">Add</a></button>
 
             </li>
 
@@ -47,12 +44,11 @@
                 <td>{{$company->email}}</td>
                 <td><a href="{{$company->websiteLink}}">{{$company->websiteLink}}</a></td>
                 <td>
-                    <form action="{{route('admin.destroy',$company->id)}} method='post'>
+                    <form action="{{route('company.destroy',$company->id)}} " method='post'>
                         @csrf
-                        <button><a href={{route('admin.edit',$company->id)}}>Edit </a> </button>
+                        <button><a href={{route('companyEdit.index',$company->id)}}>Edit </a></button>
 
                         @method('DELETE')
-
                         <button type='submit'>Delete</button>
 
                     </form>
@@ -67,6 +63,5 @@
     @section('pagination')
         {{$companies->links('pagination::bootstrap-4')}}
     @endsection
-
 
 @endsection

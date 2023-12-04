@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
@@ -11,7 +12,14 @@ class EmployeeController extends Controller
 
     public function index()
     {
-        return view('employee');
+        // find all employees that work for the company
+//        $employees =Employee::find()
+
+        $employee = Auth::user()->employee;
+        $employees = Employee::where('companyID', $employee->companyID)->paginate(10);
+
+        return view('employee.employee', compact('employees'));
+
     }
 
     public function edit(Request $request)
@@ -33,11 +41,12 @@ class EmployeeController extends Controller
         $employee->save();
         return redirect()->route('companies');
     }
-    public  function destroy(Request $request)
+    public  function destroy(Employee $employee)
     {
-        $employee = Employee::find($request->id);
+        $user = Auth::user();
+
         $employee->delete();
-        return redirect()->route('employee');
+        return redirect()->route('employee.index',$user->id);
     }
 
 

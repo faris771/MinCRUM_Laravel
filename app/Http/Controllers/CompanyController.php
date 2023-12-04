@@ -15,6 +15,11 @@ class CompanyController extends Controller
 
 
     }
+    public function editIndex(Request $request)
+    {
+        $company = Company::find($request->id);
+        return view('admin.editCompany.blade.php', compact('company'));
+    }
 
     public function edit(Request $request)
     {
@@ -27,13 +32,17 @@ class CompanyController extends Controller
         return redirect()->route('companies');
     }
 
-    public function destroy(Request $request)
+    public function destroy(Company $company)
     {
-        $company = Company::find($request->id);
         $company->delete();
-        return redirect()->route('companies');
+        return redirect()->route('admin.index');
     }
 
+    public function addCompanyIndex()
+    {
+
+        return view('admin.addCompany');
+    }
 
 
 }

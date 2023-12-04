@@ -48,9 +48,6 @@ class AddEmployeeController extends Controller
 
         return redirect()->route('employee.index');
 
-
     }
-
-
     //
 }

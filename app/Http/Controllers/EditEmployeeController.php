@@ -2,30 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class EditEmployeeController extends Controller
 {
 
-    public function index()
+    public function index(Employee $employee)
     {
-        return view('employee.edit');
+        return view('employee.edit', compact('employee'));
+
     }
 
-    public function edit(Request $request)
+    public function edit(Request $request, Employee $employee)
     {
+//        dd($request->all());
         $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',
-            'companyID' => 'required',
             'email' => 'required|email',
             'password' => 'required',
             'phone' => 'required'
         ]);
-        $employee = Employee::find($request->id);
+
+        $employee = Employee::find($employee->id);
         $employee->firstName = $request->firstName;
         $employee->lastName = $request->lastName;
-        $employee->companyID = $request->companyID;
         $employee->email = $request->email;
         $employee->password = $request->password;
         $employee->phone = $request->phone;

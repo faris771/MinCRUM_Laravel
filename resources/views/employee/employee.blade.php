@@ -11,10 +11,11 @@
 
                 {{--                <form method="post" action={{route('admin.store')}}>--}}
                 {{--                    @csrf--}}
-                <button>Add</button>
-                {{--                </form>--}}
+                <a href="{{route('addEmployee.index')}}">
+                    <button>Add</button>
+                    {{--                </form>--}}
 
-            </li>
+                </a></li>
 
         </ul>
     </div>
@@ -64,7 +65,7 @@
                 <td>
                     <form action="{{route('employee.destroy',$employee->id)}}" method='post'>
                         @csrf
-{{--                        <button><a href={{route('employee.edit',$employee->id)}}>Edit </a></button>--}}
+                        <button><a href={{route('editEmployee.index',$employee->id)}}>Edit </a></button>
 
                         @method('DELETE')
                         <button type='submit'>Delete</button>

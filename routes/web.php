@@ -43,7 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/employee/add', [App\Http\Controllers\AddEmployeeController::class, 'store'])->name('addEmployee.store');
 
     Route::delete('/employee/{employee}/', [App\Http\Controllers\EmployeeController::class, 'destroy'])->name('employee.destroy');
-    Route::get('/employee/edit/{employee}', [App\Http\Controllers\EditEmployeeController::class, 'index'])->name('employeeEdit.index');
+    Route::get('/employee/edit/{employee}', [App\Http\Controllers\EditEmployeeController::class, 'index'])->name('editEmployee.index');
+    Route::post('/employee/edit/{employee}', [App\Http\Controllers\EditEmployeeController::class, 'edit'])->name('editEmployee.update');
+
 //    Route:get('/employee/{add}',[App\Http\Controllers\AddEmployeeController::class, 'index'])->name('addEmployee.index');
 
 

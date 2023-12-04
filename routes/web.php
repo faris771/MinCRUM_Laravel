@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\CompanyController::class, 'index'])->name('companies');
+Route::get('/', [App\Http\Controllers\CompanyController::class, 'home'])->name('home.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -27,8 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
-    Route::delete('/admin', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::get('/adminDashBoard', [App\Http\Controllers\CompanyController::class, 'index'])->name('admin.index');
     Route::delete('/admin/{company}', [App\Http\Controllers\CompanyController::class, 'destroy'])->name('company.destroy');
 
     Route::get('/admin/edit/{company}', [App\Http\Controllers\EditCompanyController::class, 'index'])->name('companyEdit.index');
@@ -49,11 +48,8 @@ Route::middleware('auth')->group(function () {
 //    Route:get('/employee/{add}',[App\Http\Controllers\AddEmployeeController::class, 'index'])->name('addEmployee.index');
 
 
-//http://127.0.0.1:8000/employee/4/70
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
-
-
 });
 
 require __DIR__.'/auth.php';

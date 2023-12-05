@@ -6,6 +6,7 @@ use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AddEmployeeController extends Controller
 {
@@ -28,20 +29,21 @@ class AddEmployeeController extends Controller
         ]);
 
         $user = Auth::user();
+
+
         $employee = new Employee();
         $employee->firstName = $request->firstName;
         $employee->lastName = $request->lastName;
         $employee->companyID = $user->employee->companyID;
         $employee->email = $request->email;
-        $employee->password = $request->password;
+        $employee->password = Hash::make($request->password);
         $employee->phone = $request->phone;
 
         $employeeAsUser = new User();
         $employeeAsUser->name = $employee->firstName . ' ' . $employee->lastName;
         $employeeAsUser->email = $employee->email;
-        $employeeAsUser->password = $employee->password;
+        $employeeAsUser->password = Hash::make($request->password);
         $employeeAsUser->save();
-
         $employee->userID = $employeeAsUser->id;
 
         $employee->save();

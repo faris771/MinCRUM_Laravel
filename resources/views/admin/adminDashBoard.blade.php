@@ -1,5 +1,13 @@
 @extends('layouts.master')
 
+@section('navbar-brand')
+
+    <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+            MinCRUM Admin
+        </a>
+    </div>
+@endsection
 
 
 @section('nav-items')
@@ -7,9 +15,17 @@
 
         <ul>
             <li>
-                <button><a href="/">Sign out</a></button>
+                <form action="{{ route('logout') }}" method="post" class="position-absolute end-0 top-0">
+                    @csrf
+                    <button type="submit" class="btn btn-warning">Log out</button>
+                </form>
+                <br>
+                <a href="{{ route('addCompany.index')}}">
+                <button class="btn btn-warning">Add</button>
 
-                <button><a href="{{ route('addCompany.index')}}">Add</a></button>
+                </a>
+                {{--    <img src="{{ asset('storage/' . basename(Auth::user()->employee->company->logo)) }}" width="150" height="150"--}}
+                {{--         alt="Company Logo" class="position-absolute end-0 top-auto mb-10">--}}
 
             </li>
 
@@ -17,14 +33,17 @@
     </div>
 @endsection
 
-@section('data-inf')
+@section('data-info')
     <p>
         Companies:
     </p>
+
 @endsection
 
 
+
 @section('table')
+
     <table>
         <thead>
         <tr>
@@ -35,6 +54,7 @@
             <th>Actions</th>
         </tr>
         </thead>
+
         <tbody>
 
         @foreach($companies as $company)
@@ -46,8 +66,8 @@
                 <td>
                     <form action="{{route('company.destroy',$company->id)}} " method='post'>
                         @csrf
-                        <button><a href={{route('companyEdit.index',$company->id)}}>Edit </a></button>
 
+                        <button><a href="{{ route('companyEdit.index', $company->id) }}">Edit</a></button>
                         @method('DELETE')
                         <button type='submit'>Delete</button>
 
@@ -60,8 +80,8 @@
         </tbody>
 
     </table>
-    @section('pagination')
-        {{$companies->links('pagination::bootstrap-4')}}
-    @endsection
+@endsection
 
+@section('pagination')
+    {{$companies->links('pagination::bootstrap-4')}}
 @endsection

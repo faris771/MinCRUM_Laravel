@@ -22,19 +22,17 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
     Route::get('/adminDashBoard', [App\Http\Controllers\CompanyController::class, 'index'])->name('admin.index');
     Route::delete('/admin/{company}', [App\Http\Controllers\CompanyController::class, 'destroy'])->name('company.destroy');
-
     Route::get('/admin/edit/{company}', [App\Http\Controllers\EditCompanyController::class, 'index'])->name('companyEdit.index');
     Route::get('/admin/add',[App\Http\Controllers\AddCompanyController::class, 'index'])->name('addCompany.index');
     Route::post('/admin/add',[App\Http\Controllers\AddCompanyController::class, 'store'])->name('addCompany.store');
     Route::post('/admin/edit/{company}', [App\Http\Controllers\EditCompanyController::class, 'update'])->name('companyEdit.update');
-
 
 
     Route::get('/employee', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employee.index');
@@ -45,11 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/employee/edit/{employee}', [App\Http\Controllers\EditEmployeeController::class, 'index'])->name('editEmployee.index');
     Route::post('/employee/edit/{employee}', [App\Http\Controllers\EditEmployeeController::class, 'edit'])->name('editEmployee.update');
 
-//    Route:get('/employee/{add}',[App\Http\Controllers\AddEmployeeController::class, 'index'])->name('addEmployee.index');
-
-
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
+//    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+//        ->name('logout');
 });
 
 require __DIR__.'/auth.php';

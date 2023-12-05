@@ -12,11 +12,9 @@
 <body>
 <nav class="navbar">
     <div class="navdiv">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                MinCRUM
-            </a>
-        </div>
+
+        @yield('navbar-brand')
+
         @yield('nav-items')
     </div>
 
@@ -25,6 +23,9 @@
 <div class="data-info">
     @yield('data-info')
 
+</div>
+<div class="logo-add">
+@yield('logo-add')
 </div>
 
 <div class="container">

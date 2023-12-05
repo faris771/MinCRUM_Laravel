@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class EditEmployeeController extends Controller
 {
@@ -24,12 +25,14 @@ class EditEmployeeController extends Controller
             'password' => 'required',
             'phone' => 'required'
         ]);
+//        $employeeAsUser = $employee->user;
+//        dd($employeeAsUser);
 
-        $employee = Employee::find($employee->id);
+//        $employee = Employee::find($employee->id);
         $employee->firstName = $request->firstName;
         $employee->lastName = $request->lastName;
         $employee->email = $request->email;
-        $employee->password = $request->password;
+        $employee->password = Hash::make($request->password);
         $employee->phone = $request->phone;
         $employee->save();
         return redirect()->route('employee.index');

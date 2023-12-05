@@ -1,5 +1,14 @@
 @extends('layouts.master')
 
+@section('navbar-brand')
+
+    <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+            MinCRUM
+        </a>
+    </div>
+@endsection
+
 @section('nav-items')
 
     <div class="navbar-menu">

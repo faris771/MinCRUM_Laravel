@@ -1,34 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Edit Employee</title>
+    <link rel="stylesheet" href="{{asset('css/editEmployee.css')}}">
 </head>
 <body>
 
-{{--back button--}}
-<a href="{{route('admin.index')}}">Back</a>
+<!-- Back button -->
+<a href="{{ route('employee.index') }}">Back</a>
 
-<form method="post" action="{{route('editEmployee.update',$employee->id)}}">
+<!-- Edit Employee Form -->
+<form method="post" action="{{ route('editEmployee.update', $employee->id) }}">
     @csrf
+
+
     <label for="firstName">First Name</label>
-    <input type="text" name="firstName" id="firstName" value="{{$employee->firstName}}">
+    <input type="text" name="firstName" id="firstName" value="{{ $employee->firstName }}">
+
     <label for="lastName">Last Name</label>
-    <input type="text" name="lastName" id="lastName" value="{{$employee->lastName}}">
+    <input type="text" name="lastName" id="lastName" value="{{ $employee->lastName }}">
+
     <label for="email">Email</label>
-    <input type="text" name="email" id="email" value="{{$employee->email}}">
+    <input type="text" name="email" id="email" value="{{ $employee->email }}">
+
     <label for="phone">Phone</label>
-    <input type="text" name="phone" id="phone" value="{{$employee->phone}}">
-{{--    password--}}
+    <input type="text" name="phone" id="phone" value="{{ $employee->phone }}">
+
     <label for="password">Password</label>
-    <input type="password" name="password" id="password" value="{{$employee->password}}">
+    <input type="password" name="password" id="password" value="">
 
-    <button type="submit">update</button>
-
-
+    <button type="submit">Update</button>
 </form>
 
 </body>

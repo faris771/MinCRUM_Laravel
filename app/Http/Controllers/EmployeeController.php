@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,6 @@ class EmployeeController extends Controller
     {
         // find all employees that work for the company
 //        $employees =Employee::find()
-
         $employee = Auth::user()->employee;
         $employees = Employee::where('companyID', $employee->companyID)->paginate(10);
 
@@ -41,19 +41,23 @@ class EmployeeController extends Controller
         $employee->save();
         return redirect()->route('companies');
     }
-    public  function destroy(Employee $employee)
+
+    public function destroy(Employee $employee)
     {
         $user = Auth::user();
 
+
+        $employeeAsUser = User::where('id', $employee->userID)->first();
+        $employeeAsUser->delete();
+
         $employee->delete();
-        return redirect()->route('employee.index',$user->id);
+        return redirect()->route('employee.index', $user->id);
     }
 
 
     public function logout()
     {
-        if (session()->has('loginId'))
-        {
+        if (session()->has('loginId')) {
             session()->pull('loginId');
             return redirect('login');
         }

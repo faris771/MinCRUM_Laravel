@@ -7,6 +7,74 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+
+# MinCRUM - Minimalist Employee and Company Relationship Management
+
+## Introduction
+
+MinCRUM is a simple yet powerful PHP Laravel project designed for managing employee and company relationships. This project aims to provide a minimalist and user-friendly interface for tracking essential information about employees and the companies they are associated with.
+
+## Features
+
+1. **Employee Management:**
+   - Add, edit, and delete employee profiles.
+   - Track basic employee details, such as name, position, and contact information.
+
+2. **Company Management:**
+   - Maintain a list of companies associated with your organization.
+
+3. **Relationship Mapping:**
+   - Establish relationships between employees and the companies they work for.
+
+4. **User Authentication:**
+   - Secure access to the application with user authentication and authorization.
+
+## Installation
+
+Follow these steps to set up MinCRUM on your local machine:
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/your-username/mincrum.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd mincrum
+    ```
+
+3. Install dependencies:
+
+    ```bash
+    composer install
+    ```
+
+4. Create a copy of the `.env.example` file and rename it to `.env`:
+
+    ```bash
+    cp .env.example .env
+    ```
+
+5. Configure your database settings in the `.env` file.
+
+6. Migrate the database:
+
+    ```bash
+    php artisan migrate
+    ```
+
+7. Start the development server:
+
+    ```bash
+    php artisan serve
+    ```
+
+Visit [http://localhost:8000](http://localhost:8000) in your browser to access MinCRUM.
+
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

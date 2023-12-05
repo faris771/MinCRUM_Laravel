@@ -11,8 +11,9 @@
 # MinCRUM - Minimalist Employee and Company Relationship Management
 
 ## Introduction
-
 MinCRUM is a simple yet powerful PHP Laravel project designed for managing employee and company relationships. This project aims to provide a minimalist and user-friendly interface for tracking essential information about employees and the companies they are associated with.
+
+This project is developed for educational purposes as part of my internship, aiming to enhance skills in web development and Laravel framework.
 
 ## Features
 
@@ -42,7 +43,8 @@ Follow these steps to set up MinCRUM on your local machine:
 2. Navigate to the project directory:
 
     ```bash
-    cd mincrum
+    cd MinCRUM_Laravel
+
     ```
 
 3. Install dependencies:
